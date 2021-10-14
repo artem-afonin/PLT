@@ -1,0 +1,24 @@
+{
+  "info": "Множество всех цепочек из {0, 1}*, длины которых кратны трем.",
+  "states": ["A", "B", "C"],
+  "symbols": ["0", "1"],
+  "start_state": "A",
+  "end_states": ["A"],
+  "transitions": [
+    {
+      "from": "A",
+      "to": "B",
+      "symbols": ["0", "1"]
+    },
+    {
+      "from": "B",
+      "to": "C",
+      "symbols": ["0", "1"]
+    },
+    {
+      "from": "C",
+      "to": "A",
+      "symbols": ["0", "1"]
+    }
+  ]
+}
