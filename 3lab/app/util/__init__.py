@@ -1,6 +1,7 @@
 import argparse
 import os
 
+from .DfaLoggingEvent import DfaLoggingEvent
 from .DfaLoggingList import DfaLoggingList
 
 

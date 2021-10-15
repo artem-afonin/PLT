@@ -1,6 +1,6 @@
 import json
 
-from util import DfaLoggingList
+from util import DfaLoggingList, DfaLoggingEvent
 
 
 def parse_dfa_json(json_path):
@@ -81,7 +81,7 @@ def process_dfa(dfa, input_str):
         ch = input_list[0]
         transit_to = current_state_transition(ch)
         if transit_to:
-            logging_list.add_action(current_state, ch, transit_to)
+            logging_list.add_event(DfaLoggingEvent(current_state, ch, transit_to))
             current_state = transit_to
             input_list = input_list[1:]
         else:

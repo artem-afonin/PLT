@@ -2,6 +2,7 @@ import os
 import sys
 
 from dfa import parse_dfa_json, verify_dfa, process_dfa
+from util import DfaLoggingList
 
 script_path = os.path.abspath(sys.argv[0])
 script_dir = os.path.dirname(script_path)
@@ -12,9 +13,9 @@ def cli_print_dfa_info(dfa):
     print(f'# [INFO]:  {dfa["info"]}')
 
 
-def cli_log_result(logging_list):
-    for log in logging_list:
-        print(f'# [TRACE]: {log["from"]} --{log["symbol"]}--> {log["to"]}')
+def cli_log_result(logging_list: DfaLoggingList):
+    for event in logging_list:
+        print(f'# [TRACE]: {event.from_state} --{event.symbol}--> {event.to_state}')
     if logging_list.has_error():
         print(f'# [ERROR]: {logging_list.get_error()}')
 
