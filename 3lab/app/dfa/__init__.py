@@ -1,57 +1,6 @@
-#!/usr/bin/env python3
-
-import argparse
 import json
-import os
 
-script_path = os.path.abspath(__file__)
-script_dir = os.path.dirname(script_path)
-resources_dir = os.path.join(script_dir, 'resources')
-
-
-class DfaLoggingList:
-    def __init__(self):
-        self.__list = []
-        self.__error = None
-
-    def add_action(self, from_state, symbol, to_state):
-        if not self.has_error():
-            self.__list.append({
-                'from': from_state,
-                'symbol': symbol,
-                'to': to_state,
-            })
-
-    def get_actions(self):
-        return self.__list
-
-    def set_error(self, error_text):
-        self.__error = error_text
-
-    def get_error(self):
-        return self.__error
-
-    def has_error(self):
-        return True if self.__error is not None else False
-
-    def __iter__(self):
-        for entry in self.__list:
-            yield entry
-
-
-def parse_args():
-    def file_exists(f):
-        if not os.path.exists(f):
-            raise argparse.ArgumentTypeError(f'{f} does no exist')
-        return f
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('input_line', type=str,
-                        help='input line for DFA')
-    parser.add_argument('-f', '--file', type=file_exists, required=False,
-                        default=os.path.join(resources_dir, 'dfa1.json'),
-                        help='path to DFA json definition')
-    return parser.parse_args()
+from util import DfaLoggingList
 
 
 def parse_dfa_json(json_path):
@@ -144,26 +93,3 @@ def process_dfa(dfa, input_str):
         return logging_list
 
     return logging_list
-
-
-def main():
-    args = parse_args()
-    dfa_json_path = args.file
-    input_line = args.input_line
-
-    dfa = parse_dfa_json(dfa_json_path)
-    verify_dfa(dfa)
-
-    # TODO: refactor logging
-    if 'info' in dfa:
-        print(f'# [INFO]: {dfa["info"]}')
-    logging_list = process_dfa(dfa, input_line)
-
-    for log in logging_list:
-        print(f'# [TRACE]: {log["from"]} --{log["symbol"]}--> {log["to"]}')
-    if logging_list.has_error():
-        print(f'# [ERROR]: {logging_list.get_error()}')
-
-
-if __name__ == '__main__':
-    main()
