@@ -3,8 +3,9 @@
 Lab programs for programming language theory (academic discipline)
 
 ### 3lab
-Run:
+Run via CLI:
 ```shell
-$ 3lab/__main__.py -f 3lab/resources/dfa1.json 1000bcca10abc
-$ 3lab/__main__.py -f 3lab/resources/dfa2.json 010001
+$ cd 3lab
+$ python3 app -f resources/dfa1.json 110ba a001a 001abcd01 1100abccba10
+$ python3 app -f resources/dfa2.json 010111 0010 11a
 ```
