@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from cli import cli_main
 from util import parse_args
 

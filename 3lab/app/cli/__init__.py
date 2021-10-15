@@ -22,7 +22,7 @@ def cli_log_result(logging_list: DfaLoggingList):
 
 def cli_main(args):
     dfa_json_path = args.file or os.path.join(resources_dir, 'dfa1.json')
-    input_line = args.input_line
+    input_lines = args.input_lines
 
     dfa_dict = parse_dfa_json(dfa_json_path)
     dfa = DFA(dfa_dict)
@@ -30,7 +30,10 @@ def cli_main(args):
     if dfa.has_info():
         cli_print_dfa_info(dfa)
 
-    dfa.start(input_line)
-    dfa.process()
-    logging_list = dfa.get_logging_list()
-    cli_log_result(logging_list)
+    for line in input_lines:
+        print(f'\n# [INFO]:  Processing "{line}"')
+        dfa.reset()
+        dfa.start(line)
+        dfa.process()
+        logging_list = dfa.get_logging_list()
+        cli_log_result(logging_list)

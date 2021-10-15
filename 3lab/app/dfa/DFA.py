@@ -71,6 +71,7 @@ class DFA:
             self.step()
 
     def get_logging_list(self):
+        """ Get DFA logging list """
         return self.__logging_list
 
     def has_info(self) -> bool:
@@ -82,6 +83,7 @@ class DFA:
         return self.__dfa_dict['info'] if self.has_info() else None
 
     def get_global_state(self) -> DFAGlobalState:
+        """ Get current global DFA state """
         return self.__global_state
 
     def __verify_input(self, input_str):

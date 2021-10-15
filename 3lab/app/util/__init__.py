@@ -13,7 +13,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('input_line', type=str,
+    parser.add_argument('input_lines', type=str, nargs='+',
                         help='input line for DFA')
     parser.add_argument('-f', '--file', type=file_exists, required=False,
                         help='path to DFA json definition')
