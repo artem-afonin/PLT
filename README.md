@@ -3,6 +3,13 @@
 Lab programs for programming language theory (academic discipline)
 
 ### 3lab
+
+Run via GUI (PyQt5 package required):
+```shell
+$ cd 3lab
+$ python3 app
+```
+
 Run via CLI:
 ```shell
 $ cd 3lab
