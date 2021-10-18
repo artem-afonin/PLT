@@ -1,4 +1,5 @@
 from cli import cli_main
+from gui import gui_main
 from util import parse_args
 
 
@@ -7,7 +8,7 @@ def main():
     if args.cli:
         cli_main(args)
     else:
-        pass
+        gui_main(args)
 
 
 if __name__ == '__main__':
