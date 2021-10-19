@@ -13,12 +13,12 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('input_lines', type=str, nargs='+',
+    parser.add_argument('input_lines', type=str, nargs='*',
                         help='input line for DFA')
     parser.add_argument('-f', '--file', type=file_exists, required=False,
                         help='path to DFA json definition')
 
-    parser.add_argument('--cli', action='store_true', default=True,
+    parser.add_argument('--cli', action='store_true', default=False,
                         help='run in CLI without GUI')
 
     return parser.parse_args()
